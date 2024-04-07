@@ -1,2 +1,2 @@
-# cse360_projectproject
+# cse360_project
 Project!
