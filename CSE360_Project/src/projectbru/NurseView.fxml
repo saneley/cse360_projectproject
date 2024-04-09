@@ -1,22 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectbru.SceneController">
+<AnchorPane prefHeight="671.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectbru.SceneController">
    <children>
-      <Label alignment="CENTER" layoutX="174.0" layoutY="23.0" prefHeight="60.0" prefWidth="252.0" text="Nurse View">
-         <font>
-            <Font size="35.0" />
-         </font>
-      </Label>
-      <Label layoutX="256.0" layoutY="74.0" text="Welcome, Nurse" />
-      <Label layoutX="28.0" layoutY="113.0" text="Patient Overview for Progress, Work in">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
+      <BorderPane layoutY="14.0" prefHeight="629.0" prefWidth="756.0">
+         <top>
+            <VBox prefHeight="84.0" prefWidth="756.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="BOTTOM_CENTER" prefHeight="59.0" prefWidth="756.0" text="Initial Nurse Assesment">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="762.0" text="Welcome, Nurse!" />
+               </children>
+            </VBox>
+         </top>
+         <left>
+            <VBox alignment="CENTER_LEFT" prefHeight="538.0" prefWidth="366.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="63.0" prefWidth="167.0" text="  Patient Demographics" underline="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="351.0">
+                     <children>
+                        <Label text="  DOB:        " />
+                        <TextField id="dobTextField" prefHeight="26.0" prefWidth="148.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="351.0">
+                     <children>
+                        <Label text="  Weight:   " />
+                        <TextField id="weightTextField" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="351.0">
+                     <children>
+                        <Label text="  Height:    " />
+                        <TextField id="heightTextField" />
+                     </children>
+                  </HBox>
+                  <Label prefHeight="69.0" prefWidth="161.0" text="  Patient Vitals" underline="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="351.0">
+                     <children>
+                        <Label text="  Body Temperature:   " />
+                        <TextField id="bodyTempField" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="351.0">
+                     <children>
+                        <Label text="  Blood Pressure:        " />
+                        <TextField id="bloodPressureText" prefHeight="26.0" prefWidth="156.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="351.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="130.0" text="  Pulse Rate:                 " />
+                        <TextField id="pulseRateTextField" />
+                     </children>
+                  </HBox>
+                  <Label prefHeight="64.0" prefWidth="128.0" text="  Health Concerns" underline="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="TOP_CENTER" prefHeight="176.0" prefWidth="351.0">
+                     <children>
+                        <Label text="Current Symptoms:" />
+                        <TextArea id="symptomsTextArea" prefHeight="109.0" prefWidth="377.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="192.0" prefWidth="368.0">
+                     <children>
+                        <Label text="Allergies:" />
+                        <TextArea id="allergyTextArea" prefHeight="124.0" prefWidth="367.0" />
+                     </children>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets left="40.0" />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets left="15.0" />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <right>
+            <VBox alignment="CENTER" prefHeight="515.0" prefWidth="411.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="46.0" prefWidth="99.0" text="Patient History" underline="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" prefHeight="168.0" prefWidth="379.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="88.0" text="Health Issues" />
+                        <TextArea id="healthIssuesText" prefHeight="142.0" prefWidth="391.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="186.0" prefWidth="236.0">
+                     <children>
+                        <Label prefHeight="35.0" prefWidth="134.0" text="Immunization Records" />
+                        <TextArea id="immunizationText" prefHeight="148.0" prefWidth="368.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="191.0" prefWidth="395.0">
+                     <children>
+                        <Label prefHeight="33.0" prefWidth="148.0" text="Presecribed Medications" />
+                        <TextArea id="medicationTextArea" prefHeight="129.0" prefWidth="386.0" />
+                     </children>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </right>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="86.0" prefWidth="792.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="saveButton" mnemonicParsing="false" text="Save" />
+                  <Region prefHeight="107.0" prefWidth="226.0" />
+                  <Button id="logOffButton" mnemonicParsing="false" text="Log Off" />
+                  <Region prefHeight="107.0" prefWidth="226.0" />
+                  <Button id="backButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="57.0" text="Back">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+         </BorderPane>
    </children>
 </AnchorPane>
