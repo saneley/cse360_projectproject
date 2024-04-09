@@ -17,7 +17,7 @@
                         <Insets left="-5.0" />
                      </padding>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="18.0" prefWidth="74.0" text="Settings">
+                  <Button mnemonicParsing="false" onAction="#switchToSettings" prefHeight="18.0" prefWidth="74.0" text="Settings">
                      <VBox.margin>
                         <Insets left="6.0" />
                      </VBox.margin>
