@@ -60,7 +60,7 @@ public class SceneController {
 	public void switchToScene3(ActionEvent event) throws IOException {
 		if (username.getText().toString().equals("PatientZero") && password.getText().toString().equals("epicsauce123"))
 		{
-			Parent root = FXMLLoader.load(getClass().getResource("PatientView.fxml"));
+			root = FXMLLoader.load(getClass().getResource("PatientView.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
