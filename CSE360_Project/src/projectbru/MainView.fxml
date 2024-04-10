@@ -43,27 +43,33 @@
                               <HBox alignment="CENTER_RIGHT">
                                  <children>
                                     <Label text="First Name:" />
-                                    <TextField />
+                                    <TextField fx:id="firstname" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Last Name:" />
-                                    <TextField />
+                                    <TextField fx:id="lastname" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_RIGHT">
                                  <children>
                                     <Label text="Birth Date:" />
-                                    <DatePicker prefHeight="26.0" prefWidth="150.0" />
+                                    <DatePicker fx:id="birthday" editable="false" prefHeight="26.0" prefWidth="150.0" />
                                  </children>
                               </HBox>
-                              <Button fx:id="createAccount" mnemonicParsing="false" text="Create Account" />
+                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Password:" />
+                                    <TextField fx:id="newPassword" />
+                                 </children>
+                              </HBox>
+                              <Button fx:id="createAccount" mnemonicParsing="false" onAction="#makeThatAccount" text="Create Account" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <Label fx:id="loginConsole" alignment="TOP_CENTER" prefHeight="18.0" prefWidth="290.0" textAlignment="CENTER" />
+                  <Label fx:id="loginConsole" alignment="TOP_CENTER" prefHeight="18.0" prefWidth="456.0" textAlignment="CENTER" textFill="RED" />
                </children>
             </VBox>
          </center>
