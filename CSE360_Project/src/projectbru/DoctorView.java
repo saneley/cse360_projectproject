@@ -1,4 +1,4 @@
-package application;
+package projectbru;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +15,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+//Everything has been moved to SceneController-----------------------------------------
+public class DoctorView extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Sample data

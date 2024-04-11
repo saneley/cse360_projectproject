@@ -1,18 +1,25 @@
 package projectbru;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class SceneController {
@@ -20,6 +27,7 @@ public class SceneController {
 	private Scene scene;
 	private Parent root;
 	
+	//login to account
 	@FXML
 	private Button loginPersonnel;
 	@FXML
@@ -29,10 +37,9 @@ public class SceneController {
 	@FXML
 	private TextField password;
 	
-	
+	//output console
 	@FXML
 	private Label loginConsole;
-	
 	
 	//create an account
 	@FXML
@@ -45,7 +52,6 @@ public class SceneController {
 	private TextField newPassword;
 	@FXML
 	private Button createAccount;
-	
 	
 	/*
 	public void switchToScene1(ActionEvent event) throws IOException {
@@ -73,6 +79,93 @@ public class SceneController {
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
+		}
+		if (username.getText().toString().equals("doctor") && password.getText().toString().equals("doctorsauce123"))
+		{
+			String dfirstName = "John";
+	        String dlastName = "Doe";
+	        String pharmacyName = "ABC Pharmacy";
+
+	        // Top center title
+	        Label titleLabel = new Label("Doctor View");
+
+	        // Left top patient overview
+	        Label patientOverviewLabel = new Label("Patient Overview: " + dfirstName + ", " + dlastName);
+	        Label pharmacyLabel = new Label("Pharmacy: " + pharmacyName);
+
+	        // Text areas for physical test notes and new medication
+	        TextArea physicalTestNotesTextArea = new TextArea();
+	        Label physicalTestNotesLabel = new Label("Physical Test Notes");
+	        TextArea newMedicationTextArea = new TextArea();
+	        Label newMedicationLabel = new Label("New Medication");
+
+	        // Patient history section
+	        Label patientHistoryLabel = new Label("Patient History");
+	        Label healthIssuesLabel = new Label("Health Issues");
+	        Label prescribedMedicationLabel = new Label("Prescribed Medication");
+	        Label immunizationRecordLabel = new Label("Immunization Record");
+	        TextArea healthIssuesTextArea = new TextArea();
+	        TextArea prescribedMedicationTextArea = new TextArea();
+	        TextArea immunizationRecordTextArea = new TextArea();
+
+	        // Log Off button
+	        Button logOffButton = new Button("Log Off");
+	        logOffButton.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override
+	            public void handle(ActionEvent event){
+	                saveDoctorInfo(dfirstName + dlastName, physicalTestNotesTextArea, newMedicationTextArea,
+	                        healthIssuesTextArea, prescribedMedicationTextArea, immunizationRecordTextArea);	                
+					try //taken from PatientController
+					{
+						AnchorPane pain;
+						pain = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+						stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		        		scene = new Scene(pain);
+		        		stage.setScene(scene);
+		        		stage.show();
+		                
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+					}
+	                
+	            }
+
+	        });
+
+	        // Layout setup
+	        BorderPane borderPane = new BorderPane();
+	        borderPane.setTop(titleLabel);
+
+	        GridPane leftGridPane = new GridPane();
+	        leftGridPane.setPadding(new Insets(10));
+	        leftGridPane.setVgap(10);
+	        leftGridPane.add(patientOverviewLabel, 0, 0);
+	        leftGridPane.add(pharmacyLabel, 0, 1);
+	        leftGridPane.add(physicalTestNotesLabel, 0, 2);
+	        leftGridPane.add(physicalTestNotesTextArea, 0, 3);
+	        leftGridPane.add(newMedicationLabel, 0, 4);
+	        leftGridPane.add(newMedicationTextArea, 0, 5);
+	        borderPane.setLeft(leftGridPane);
+
+	        GridPane rightGridPane = new GridPane();
+	        rightGridPane.setPadding(new Insets(10));
+	        rightGridPane.setVgap(10);
+	        rightGridPane.add(patientHistoryLabel, 0, 0);
+	        rightGridPane.add(healthIssuesLabel, 0, 1);
+	        rightGridPane.add(healthIssuesTextArea, 0, 2);
+	        rightGridPane.add(prescribedMedicationLabel, 0, 3);
+	        rightGridPane.add(prescribedMedicationTextArea, 0, 4);
+	        rightGridPane.add(immunizationRecordLabel, 0, 5);
+	        rightGridPane.add(immunizationRecordTextArea, 0, 6);
+	        borderPane.setRight(rightGridPane);
+
+	        borderPane.setBottom(logOffButton);
+	        
+	        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	        scene = new Scene(borderPane, 1200, 800);
+	        stage.setScene(scene);
+	        stage.setTitle("Doctor View");
+	        stage.show();
 		}
 		else
 		{
@@ -121,6 +214,21 @@ public class SceneController {
 			stage.show();
 		}
 		*/
+	}
+	private void saveDoctorInfo(String id, TextArea physicalTestNotesTextArea, TextArea newMedicationTextArea,
+            TextArea healthIssuesTextArea, TextArea prescribedMedicationTextArea,
+            TextArea immunizationRecordTextArea) {
+	try {
+		FileWriter writer = new FileWriter(id + "_PatientInfo.txt");
+		writer.write("Physical Test Notes:\n" + physicalTestNotesTextArea.getText() + "\n\n");
+		writer.write("New Medication:\n" + newMedicationTextArea.getText() + "\n\n");
+		writer.write("Health Issues:\n" + healthIssuesTextArea.getText() + "\n\n");
+		writer.write("Prescribed Medication:\n" + prescribedMedicationTextArea.getText() + "\n\n");
+		writer.write("Immunization Record:\n" + immunizationRecordTextArea.getText() + "\n\n");
+		writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
 	}
 
 }

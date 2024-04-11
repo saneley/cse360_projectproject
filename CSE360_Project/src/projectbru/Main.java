@@ -30,6 +30,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Main extends Application {
 	 
 	 @Override
@@ -44,6 +47,9 @@ public class Main extends Application {
 	  } catch(Exception e) {
 	   e.printStackTrace();
 	  }
+	  
+	  
+	  //Doctor View----------------
 	 } 
 
 	 public static void main(String[] args) {
