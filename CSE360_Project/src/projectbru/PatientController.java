@@ -54,6 +54,9 @@ public class PatientController {
 	private Label ll4;
 	@FXML
 	private TextField tf4;
+	
+	@FXML
+	private Label username;
 
 	
 	public void switchToList(ActionEvent event) throws IOException {
@@ -129,5 +132,10 @@ public class PatientController {
 		scene = new Scene(pain);
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	public void setUsername(String uname)
+	{
+		username.setText(uname);
 	}
 }

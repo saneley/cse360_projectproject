@@ -1,8 +1,10 @@
 package projectbru;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -174,10 +176,15 @@ public class SceneController {
 	}
 	public void switchToScene3(ActionEvent event) throws IOException //Patient Login
 	{
-		if (username.getText().toString().equals("PatientZero") && password.getText().toString().equals("epicsauce123")) //temporary
+		//if (username.getText().toString().equals("PatientZero") && password.getText().toString().equals("epicsauce123")) //temporary
+		if(checkLogin())
 		{
-			root = FXMLLoader.load(getClass().getResource("PatientView.fxml"));
-			Parent root = FXMLLoader.load(getClass().getResource("PatientView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientView.fxml"));
+			//Parent root = FXMLLoader.load(getClass().getResource("PatientView.fxml"));
+			root = loader.load();
+			PatientController patientcontroller = loader.getController();
+			patientcontroller.setUsername(username.getText()); //passes parameters to patientcontroller
+			
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -188,7 +195,7 @@ public class SceneController {
 			loginConsole.setText("Invalid Patient Login");
 		}
 	}
-	public void makeThatAccount(ActionEvent event) throws IOException {
+	public void makeThatAccount(ActionEvent event) throws IOException { //Account creation 
 		String fname = firstname.getText();
 		String lname = lastname.getText();
 		//String bday = birthday.getValue().toString();
@@ -201,19 +208,42 @@ public class SceneController {
 		String bday = birthday.getValue().toString();//returns a null pointer exception there was no input so i had to move it here
 		
 		String newUsername = fname.substring(0,1) + lname + bday.substring(2,4);
-		loginConsole.setText("SUCCESS: Account created. Your username is " + newUsername);
-	}
-	private void checkLogin() throws IOException {
-		//Main m = new Main();
-		/*if (username.getText().toString().equals("nurse") && password.getText().toString().equals("awesomesauce"))
+		File file = new File(newUsername + ".txt");
+		if(file.exists())
 		{
-			Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
+			loginConsole.setText("ERROR: Account exists already");
+			return;
 		}
-		*/
+				
+		
+		try (FileWriter writer = new FileWriter(file))
+		{
+			writer.write(nPassword + '\n');
+			loginConsole.setText("SUCCESS: Account created. Your username is " + newUsername);
+			
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}	
+	}
+	private boolean checkLogin() throws IOException {
+		File file = new File(username.getText() + ".txt");
+		if(!file.exists())
+		{
+			//loginConsole.setText("Username '" + username.getText() + "' does not exist" );
+			return false;
+		}
+		Scanner scanner = new Scanner(file);
+		String userPassword = scanner.next();
+		scanner.close();
+		if(userPassword.equals(password.getText()))
+		{
+			return true;
+		}
+		//loginConsole.setText(password.getText() + " is not equal to " + userPassword);
+		return false;
+
 	}
 	private void saveDoctorInfo(String id, TextArea physicalTestNotesTextArea, TextArea newMedicationTextArea,
             TextArea healthIssuesTextArea, TextArea prescribedMedicationTextArea,
