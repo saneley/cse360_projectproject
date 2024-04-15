@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class PatientController {
@@ -26,6 +27,7 @@ public class PatientController {
 	private HBox bootuns;
 	private Stage stage;
 	private Scene scene;
+	
 	
 	@FXML
 	private Button confirm;
@@ -65,11 +67,12 @@ public class PatientController {
 		
 	}
 	
-	public void switchToMessage(ActionEvent event) throws IOException {
-		//NEED THE MESSAGEBOARD WINDOW
-		AnchorPane pain = FXMLLoader.load(getClass().getResource("ScanListView.fxml"));
-		rootP.setCenter(pain);
-		
+	public void switchToMessages(ActionEvent event) throws IOException {
+		VBox pain = FXMLLoader.load(getClass().getResource("MessageBoard.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(pain);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	public void switchToSettings(ActionEvent event) throws IOException {
