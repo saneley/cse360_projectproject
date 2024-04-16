@@ -184,7 +184,6 @@ public class SceneController {
 			root = loader.load();
 			PatientController patientcontroller = loader.getController();
 			patientcontroller.setUsername(username.getText()); //passes parameters to patientcontroller
-			
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -219,6 +218,7 @@ public class SceneController {
 		try (FileWriter writer = new FileWriter(file))
 		{
 			writer.write(nPassword + '\n');
+			
 			loginConsole.setText("SUCCESS: Account created. Your username is " + newUsername);
 			
 		} 
